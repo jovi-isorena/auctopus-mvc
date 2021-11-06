@@ -1,0 +1,152 @@
+﻿@model AuctopusMVC.Models.Auction
+
+@{
+    ViewBag.Title = "Room";
+    AjaxOptions ajaxOptions = new AjaxOptions { 
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divHighestBid"
+        //Url = "~/Bid/HighestB",
+        
+    };
+}
+<div class=" mt-5 mb-3">
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-secondary"})
+    </div>
+<div class="row" >
+    
+    <div class="col-md-6 border border-dark border-3 border-radius-15">
+        <fieldset>
+            <legend>Auction Item # @Model.Item.AuctionedItemId</legend>
+            @Html.HiddenFor(model => model.Item.AuctionedItemId)
+            @Html.Hidden("endDateTime",Convert.ToDateTime(Model.Item.AuctionEndTime).ToString("s") , new { @id = "endDate"})
+            <div class="text-center">
+                <h1 class="display-field">
+                    @Html.DisplayFor(model => model.Item.Name)
+                </h1>
+                <img src="@("..\\..\\"+ (Model.Item.ImageURL ?? "Images\\placeholder.png"))" alt="@Model.Item.ImageURL" style="  width:100%" />
+            </div>
+    
+    
+            <div class="text-center mb-3">
+                <h3>@Html.DisplayNameFor(model => model.Item.Description)</h3>
+                <p>@Html.DisplayFor(model => model.Item.Description)</p>
+            </div>
+            <div class="text-center mb-3">
+                <h3>@Html.DisplayNameFor(model => model.Item.AuctionStartDate)</h3>
+                <p>@Html.DisplayFor(model => model.Item.AuctionStartDate)  @Html.DisplayFor(model => model.Item.AuctionStartTime)</p>
+            </div>
+            <div class="text-center mb-3">
+                <h3>@Html.DisplayNameFor(model => model.Item.AuctionEndDate)</h3>
+                <p>@Html.DisplayFor(model => model.Item.AuctionEndDate)  @Html.DisplayFor(model => model.Item.AuctionEndTime)</p>
+            </div>
+            <div class="text-center mb-3">
+                <h3>@Html.DisplayNameFor(model => model.Item.InitialBid)</h3>
+                <p>@Html.DisplayFor(model => model.Item.InitialBid)</p>
+            </div>
+            
+        </fieldset>
+    </div>
+    <div class="col-md-6">
+        <div class=" bg-pink rounded text-center">
+            <h2 class="fw-bolder">AUCTION IS NOW OPEN! </h2>
+            <p>AUCTION WILL CLOSE IN: </p>
+        </div>
+        <div id="time">
+	        <div class="days">Days</div>
+	        <div class="hours">Hours</div>
+	        <div class="minutes">Minutes</div>
+	        <div class="seconds">Seconds</div>
+	        <div class="end" style="display: none;">
+		        AUCTION IS NOW CLOSED
+	        </div>
+        </div>
+        <div>
+            @using (Ajax.BeginForm("HighestB/" + Model.Item.AuctionedItemId, "Bid", null, ajaxOptions, new { @id="ajaxform", @method="GET"}))
+            {
+
+            }
+            
+            <div class="highestBid" id="divHighestBid">
+                @Html.Partial("_HighestBid", Model.HighestBid)
+              @*<p>Highest Bid<br/>
+                  <span class="anim-number" id="highestBid"> @Html.DisplayFor(model => model.HighestBid.Amount)</span>
+                  <br/>
+                  <span class="small-text">bid made by<br/> Bidder#<span id="highestBidder">@Html.DisplayFor(model => model.HighestBid.UserId)</span></span>
+
+              </p>*@
+            </div>
+            
+            
+        </div>
+        <div class="border border-dark rounded mt-3 p-2 text-center">
+            @using (Html.BeginForm("Room", "Auction", FormMethod.Post)) //,  new { enctype = "multipart/form-data" }
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+            
+                <fieldset>
+                    <legend>Make Your Bid</legend>
+                    @Html.HiddenFor(model => model.Item.AuctionedItemId)
+                    
+                        @Html.ValidationMessageFor(model => model.NewBid.Amount)
+                    
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.NewBid.Amount, new { @class= "form-control text-center mb-2", @placeholder="Enter your bid here..."})
+                    </div>
+                </fieldset>
+                <div>
+                    <input type="submit" value="Bid" id="newBid" class="btn w-100 btn-success"/>
+                   
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/countdown.js"></script>
+    <script src="~/Scripts/getHighestBid.js"></script>
+    @*<script>
+            $(document).ready(function () {
+                setInterval(getHighestBid, 1000);
+            });
+            function getHighestBid() {
+                $('#ajaxform').submit();
+                console.log('bid');
+            }
+    </script>*@
+    @*<script type="text/ecmascript">
+        var itemId = document.getElementById("Item_AuctionedItemId").value;
+        $(document).ready(function () {
+            setInterval(getHighestBid, 1000);
+        });
+        function getHighestBid(id) {
+
+            var id = $('#Item_AuctionedItemId').val();
+            var dataurl = "/Bid/HighestBid/" + id;
+            $.ajax({
+                url: dataurl,
+                method: "GET",
+                success: function (data) {
+                    data = JSON.parse(data);
+                    console.log(data['Amount']);
+                    $('#highestBid').text(data['Amount']);
+                    $('#highestBidder').text(data['UserId']);
+                },
+                error: function (err) {
+                    console.log(err.responseText)
+                }
+            });
+        }
+
+    </script>*@
+}

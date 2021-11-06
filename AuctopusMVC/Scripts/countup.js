@@ -1,0 +1,1 @@
+﻿TweenMax.to($('.anim-number'),3, {scrambleText:{text:'', chars:'0123456789'}, repeat:-1});

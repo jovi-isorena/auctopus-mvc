@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Test</h2>
+<input type="text" name="name" id="txt" />
+<button id="btntest">GET</button>
+
+
+<script>
+    $(document).ready(function () {
+        $('#btntest').on('click', function () {
+            var id = $('#txt').val();
+            var dataurl = "/Bid/HighestBid/" + id + "";
+            console.log(id);
+            $.ajax({
+                url: dataurl,
+                method: "GET",
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Notifications</h2>
+<ul>
+@foreach (var notif in Model)
+{
+    <li>@notif.Message</li>
+}
+    </ul>

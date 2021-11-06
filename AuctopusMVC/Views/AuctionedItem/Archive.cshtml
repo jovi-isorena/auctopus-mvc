@@ -1,0 +1,51 @@
+﻿@model AuctopusMVC.Models.AuctionedItem
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<div class="mt-5">
+    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-secondary"})
+</div>
+<h2>Archive</h2>
+<div class="alert alert-danger">Are you sure you want to archive this?</div>
+
+    <div class="text-center">
+        <h1 class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </h1>
+        <img src="@(Model.ImageURL ?? "~/Images/placeholder.png")" alt="@Model.ImageURL" />
+    </div>
+    
+    
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.Description)</h3>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.Category)</h3>
+        <p>@Html.DisplayFor(model => model.Category)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.BidMethod)</h3>
+        <p>@Html.DisplayFor(model => model.BidMethod)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.AuctionStartDate)</h3>
+        <p>@Html.DisplayFor(model => model.AuctionStartDate)  @Html.DisplayFor(model => model.AuctionStartTime)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.AuctionEndDate)</h3>
+        <p>@Html.DisplayFor(model => model.AuctionEndDate)  @Html.DisplayFor(model => model.AuctionEndTime)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.InitialBid)</h3>
+        <p>@Html.DisplayFor(model => model.InitialBid)</p>
+    </div>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" class="btn btn-outline-dark w-100"/>
+        
+    </p>
+}

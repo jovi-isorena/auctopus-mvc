@@ -1,0 +1,9 @@
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\bin\Debug\AuctopusDB.dacpac
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\bin\Debug\AuctopusDB.dll
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\bin\Debug\AuctopusDB.pdb
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\Model.xml
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\refactor.xml
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\postdeploy.sql
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\predeploy.sql
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\AuctopusDB.dll
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusDB\obj\Debug\AuctopusDB.pdb

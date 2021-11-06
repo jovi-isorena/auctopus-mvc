@@ -1,0 +1,48 @@
+﻿@model AuctopusMVC.Models.AuctionedItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-secondary mt-5"})
+<h2>Item Details</h2>
+
+
+    <div class="text-center">
+        <h1 class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </h1>
+        <img src="..\..\@(Model.ImageURL ?? "Images\\placeholder.png")" alt="@Model.ImageURL" style="width: 50vw;"/>
+    </div>
+    
+    
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.Description)</h3>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.Category)</h3>
+        <p>@Html.DisplayFor(model => model.Category)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.BidMethod)</h3>
+        <p>@Html.DisplayFor(model => model.BidMethod)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.AuctionStartDate)</h3>
+        <p>@Html.DisplayFor(model => model.AuctionStartDate)  @Html.DisplayFor(model => model.AuctionStartTime)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.AuctionEndDate)</h3>
+        <p>@Html.DisplayFor(model => model.AuctionEndDate)  @Html.DisplayFor(model => model.AuctionEndTime)</p>
+    </div>
+    <div class="text-center mb-3">
+        <h3>@Html.DisplayNameFor(model => model.InitialBid)</h3>
+        <p>@Html.DisplayFor(model => model.InitialBid)</p>
+    </div>
+    
+<div class="justify-content-center m-auto w-50 row">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuctionedItemId }, new { @class= "btn btn-outline-dark m-auto w-100 mb-3"})
+    @Html.ActionLink("Go To Room", "Room", "Auction", new { id = Model.AuctionedItemId }, new { @class= "btn btn-outline-dark m-auto w-100"})
+    
+</div>

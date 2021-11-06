@@ -1,0 +1,11 @@
+﻿@model AuctopusMVC.Models.Bid
+
+
+<p>
+    Highest Bid<br/>
+    @Html.HiddenFor(model=> model.Amount)
+    <span class="anim-number" id="highestBid"> @Html.DisplayFor(model => model.Amount)</span>
+    <br/>
+    <span class="small-text">bid made by<br/> Bidder#<span id="highestBidder">@Html.DisplayFor(model => model.UserId)</span></span>
+
+</p>

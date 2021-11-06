@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AuctopusMVC.Models.AuctionedItem>
+
+@{
+    ViewBag.Title = "Item List";
+}
+
+<h2 class="mt-5">Item List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-success"})
+</p>
+<table class="table table-hover">
+    <thead class="table-dark text-center">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuctionStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuctionStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuctionEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuctionEndTime)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>    
+    <tbody>
+
+   
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @*@Html.DisplayFor(modelItem => item.ImageURL)*@
+            <img src="@(item.ImageURL ?? ".\\Images\\placeholder.png")" alt="Alternate Text" style="width: 50px; height: 50px"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuctionStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuctionStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuctionEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuctionEndTime)
+        </td>
+        <td>
+            <div class="btn-group" role="group">
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.AuctionedItemId }, new { @class = "btn btn-outline-custom-pink" })
+                @Html.ActionLink("Details", "Details", new { id=item.AuctionedItemId}, new {@class = "btn btn-outline-custom-pink" })
+                @Html.ActionLink("Archive", "Archive", new { id=item.AuctionedItemId}, new {@class = "btn btn-outline-custom-pink" })*@
+                <a href="/AuctionedItem/Details/@item.AuctionedItemId" class="btn btn-outline-custom-pink"><i class="fas fa-info-circle"></i></a>
+                <a href="/AuctionedItem/Edit/@item.AuctionedItemId" class="btn btn-outline-custom-pink"><i class="far fa-edit"></i></a>
+                <a href="/AuctionedItem/Archive/@item.AuctionedItemId" class="btn btn-outline-custom-pink"><i class="fas fa-archive"></i></a>
+            </div>
+            
+        </td>
+    </tr>
+}
+    </tbody>
+
+</table>

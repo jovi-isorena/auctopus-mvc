@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AuctopusMVC.Models.Auction>
+
+@{
+    ViewBag.Title = "Award Items";
+}
+
+<h2>Award Items</h2>
+
+<table class="table table-hover text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Item.Name)</th>
+            <th>Auction Ended At</th>
+            <th>Highest Bid</th>
+            <th>Highest Bidder</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(model => item.Item.Name)</td>
+                <td>@Html.DisplayFor(model => item.Item.AuctionEndDate) @Html.DisplayFor(model => item.Item.AuctionEndTime)</td>
+                <td>@Html.DisplayFor(model => item.HighestBid.Amount)</td>
+                <td>@Html.DisplayFor(model => item.HighestBid.UserId)</td>
+                <td>
+                    <div class="btn-group">
+                        @if (item.HighestBid != null) { 
+                            <a href="~/Auction/AwardItem/@item.Item.AuctionedItemId" class="btn btn-custom-pink w-100"><i class="fas fa-gift"></i> Award Item</a>
+                        } else{
+                            <a class="btn btn-secondary"><i class="far fa-calendar-alt"></i> Reschedule</a>
+                            <a class="btn btn-secondary" href="~/AuctionedItem/Archive/@item.Item.AuctionedItemId"><i class="fas fa-archive"></i> Archive Item</a>
+                        }
+                        
+                    </div>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

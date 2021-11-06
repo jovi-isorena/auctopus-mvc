@@ -1,0 +1,66 @@
+﻿@model AuctopusMVC.Models.UserModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="login-bg"></div>
+<div class="text-center mt-5 frosted p-5 w-50 w-xs-100 m-auto border-radius-10">
+
+    <h2>Register</h2>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row mb-3">
+            <div class="col-6">
+                @Html.LabelFor(model => model.FirstName, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger"})
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => model.LastName, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger"})
+            </div>
+        </div>
+       <div class="row mb-3">
+            <div class="col-6">
+                @Html.LabelFor(model => model.Email, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger"})
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => model.ConfirmEmail, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.ConfirmEmail, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger"})
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                @Html.LabelFor(model => model.Password, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "form-label"})
+                @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control w-100 m-auto"})
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger"})
+            </div>
+        </div>
+        
+
+        <div>
+            <input type="submit" value="Register" class="btn btn-outline-dark w-50"/>
+        </div>
+        <div>
+                @Html.ActionLink("Already a member? Login here.", "Login")
+            </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

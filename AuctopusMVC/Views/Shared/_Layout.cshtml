@@ -1,0 +1,149 @@
+﻿@{
+    string home = "", item = "", auction = "";
+    }
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        @*<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
+        <meta name="viewport" content="width=device-width" />
+        <script src="https://kit.fontawesome.com/22e96e7343.js" crossorigin="anonymous"></script>
+        @*<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+        @Styles.Render("~/Content/bootstrap")
+        @Styles.Render("~/Content/custom")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header class=" sticky-top small-bottom-shadow">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light  p-0">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="~/Images/auctopus.svg" alt="Brand Logo" style="width:250px"/></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav w-100" >
+                    @{
+                        if (Html.ViewContext.Controller.ToString() == "Home")
+                        {home = "selected-nav";}
+                        
+                       if (Html.ViewContext.Controller.ToString() == "AuctionedItem")
+                       {item = "selected-nav";}
+                       if (Html.ViewContext.Controller.ToString() == "Auction")
+                       {auction = "selected-nav";}        
+                    }
+                    @*Universal Links*@
+                      @*home
+                      items
+                      about us
+                      contact us*@
+
+                     
+
+                      @*Admin links*@
+                      @*item maintenance
+                      item awarding
+                      dashboard*@
+
+                      @*bidder links*@
+
+
+                    <li class="nav-item @home">@Html.ActionLink("Home", "Index", "Home", null, new { @class="nav-link fw-bold"})</li>
+                    <li class="nav-item @auction">@Html.ActionLink("Auctions", "Index", "Auction", null, new { @class = "nav-link fw-bold"})</li>
+                    
+                    @{
+                        Boolean isAdmin = false;
+                        if (Session["IsAdmin"] != null)
+                        {
+                            isAdmin = Boolean.Parse(Session["IsAdmin"].ToString());   
+                        }
+                         
+                        //if (isAdmin)
+                        //{
+                            <li class="nav-item @item">@Html.ActionLink("Auctioned Items", "Index", "AuctionedItem", null, new { @class="nav-link fw-bold"})</li>
+                            <li class="nav-item @item">@Html.ActionLink("Award Items", "AwardItems", "Auction", null, new { @class="nav-link fw-bold"})</li>
+                        //}
+                   }
+                  </ul>
+                    @if (Session["UserId"] == null)
+                    {
+                        <div class="float-md-start d-flex ">
+                            <span class="nav-item m-1">@Html.ActionLink("Login", "Login", "Home", null, new { @class = "nav-link fw-bold btn btn-outline-custom-pink" })</span>
+                            <span class="nav-item m-1">@Html.ActionLink("Register", "Register", "Home", null, new { @class = "nav-link fw-bold  btn btn-outline-custom-pink" })</span>
+                        </div>    
+                    }
+                    else {
+                        <div class="nav-item dropdown  mx-4">
+                            <button type="button" class=" border border-dark rounded-circle d-inline position-relative" id="notificationIcon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-bell"></i>
+                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </button>
+                            @Html.Partial("_NotificationList")
+                        </div>
+                        <div class="nav-item dropdown">
+                            @*<div class="ml-3 btn-group">*@
+                                
+                                
+                                <button type="button" class="btn btn-custom-pink dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Hi, <span class="text-capitalize"> @Session["FirstName"]</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-user text-dark mr-3"></i>Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Top-up</a></li>
+                                    <li><a class="dropdown-item" href="#">My Items</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="/Home/Logout"><i class="fas fa-sign-out-alt text-danger mr-3"></i>Logout</a>
+                                        
+                                    </li>
+                                </ul>
+                            @*</div>*@
+                        </div>
+                        @*<div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                        </div>*@
+                    }
+                    
+                </div>
+                @*<section id="login" style="float:right">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+              </div>
+            </nav>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix container" style="min-height:95vh">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="text-center">
+                    <p>&copy; @DateTime.Now.Year - Auctopus, Online Auction</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @*@Scripts.Render("~/bundles/bootstrap")*@
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/notification.js"></script>
+        @RenderSection("scripts", required: false)
+        
+        
+    </body>
+</html>
