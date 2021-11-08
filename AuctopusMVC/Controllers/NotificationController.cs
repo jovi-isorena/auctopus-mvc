@@ -1,6 +1,7 @@
 ﻿using AuctopusMVC.Models;
 using DataLibrary.BusinessLogic;
 using DataLibrary.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,27 @@ namespace AuctopusMVC.Controllers
 
             return View(notifs);
         }
+        public JsonResult NotificationCount(string id)
+        {
+            //string gg = HttpContext.Request.Path;
+            //return gg;
+            int count = NotificationProcessor.GetUnreadNotificationsCount(Int32.Parse(id));
+            var json = JsonConvert.SerializeObject(count);
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+        public PartialViewResult NotificationList(string id)
+        {
+            List<NotificationModel> notifs = NotificationProcessor.GetUnreadNotifications(Int32.Parse(id));
+            return PartialView("_NotificationList", notifs);
+        }
 
-
+        public ActionResult RedirectNotification(string id)
+        { 
+            
+            string[] link = NotificationProcessor.GetNotification(Int32.Parse(id)).Link.Split('/');
+            NotificationProcessor.ReadNotification(Int32.Parse(id));
+            return RedirectToAction(link[2] + "/" + link[3], link[1]);
+        }
         //
         // GET: /Notification/Details/5
 

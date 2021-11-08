@@ -1,7 +1,7 @@
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\obj\Debug\DataLibrary.csprojResolveAssemblyReference.cache
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\bin\Debug\DataLibrary.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\bin\Debug\DataLibrary.pdb
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\bin\Debug\Dapper.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\bin\Debug\Dapper.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\obj\Debug\DataLibrary.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\obj\Debug\DataLibrary.pdb
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\DataLibrary\obj\Debug\DataLibrary.csprojResolveAssemblyReference.cache

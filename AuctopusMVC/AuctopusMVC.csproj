@@ -139,7 +139,7 @@
     <Compile Include="Models\AuctionedItem.cs" />
     <Compile Include="Models\Bid.cs" />
     <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +208,7 @@
     <Content Include="Images\deathnote.png" />
     <Content Include="Images\placeholder.png" />
     <Content Include="Images\staircase.jpg" />
+    <Content Include="Scripts\auctionUpdate.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -283,6 +284,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\_HighestBid.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Shared\_NotificationList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

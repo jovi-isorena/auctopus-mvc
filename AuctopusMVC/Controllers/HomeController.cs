@@ -53,7 +53,7 @@ namespace AuctopusMVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(UserModel u)
+        public ActionResult Register(User u)
         {
             if (ModelState.IsValid)
             {

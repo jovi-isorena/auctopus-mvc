@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DataLibrary.BusinessLogic;
 using AuctopusMVC.Models;
 using DataLibrary.Models;
+using Newtonsoft.Json;
 
 namespace AuctopusMVC.Controllers
 {
@@ -133,6 +134,35 @@ namespace AuctopusMVC.Controllers
             }
         }
 
+        public JsonResult CloseAllEndedAuction()
+        {
+            List<AuctionedItemModel> endedAucs = AuctionedItemProcessor.LoadEndedAuctions();
+            foreach (var auction in endedAucs)
+            {
+                List<int> biddersId = BidProcessor.GetBidders(auction.AuctionedItemId);
+                if (biddersId.Capacity > 0) {
+                    int highestBidder = BidProcessor.GetHighestBid(auction.AuctionedItemId).UserId;
+
+                    foreach (var bidder in biddersId)
+                    {
+                        if (bidder == highestBidder)
+                        {
+                            NotificationProcessor.Create(NotificationType.WonBid, bidder, auction.AuctionedItemId);
+                        }
+                        else
+                        {
+                            NotificationProcessor.Create(NotificationType.LoseBid, bidder, auction.AuctionedItemId);
+                        }
+                    }
+                    
+                }
+                AuctionedItemProcessor.CloseAuction(auction.AuctionedItemId);
+                
+            }
+            var json = JsonConvert.SerializeObject(endedAucs.Capacity);
+            return Json(json, JsonRequestBehavior.AllowGet);
+            
+        }
         
     }
 }

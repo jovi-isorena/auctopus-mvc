@@ -1,6 +1,8 @@
 ﻿@{
     string home = "", item = "", auction = "";
-    }
+    
+    
+}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -61,11 +63,12 @@
                             isAdmin = Boolean.Parse(Session["IsAdmin"].ToString());   
                         }
                          
-                        //if (isAdmin)
-                        //{
+                        if (isAdmin)
+                        {
+                            <input type="hidden" id="isAdmin"/>
                             <li class="nav-item @item">@Html.ActionLink("Auctioned Items", "Index", "AuctionedItem", null, new { @class="nav-link fw-bold"})</li>
                             <li class="nav-item @item">@Html.ActionLink("Award Items", "AwardItems", "Auction", null, new { @class="nav-link fw-bold"})</li>
-                        //}
+                        }
                    }
                   </ul>
                     @if (Session["UserId"] == null)
@@ -76,15 +79,23 @@
                         </div>    
                     }
                     else {
-                        <div class="nav-item dropdown  mx-4">
-                            <button type="button" class=" border border-dark rounded-circle d-inline position-relative" id="notificationIcon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-bell"></i>
-                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                        AjaxOptions notificationAjaxOptions = new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "updatediv"
+                            //Url = "~/Bid/HighestB",
 
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            </button>
-                            @Html.Partial("_NotificationList")
+                        };
+                        using (Ajax.BeginForm("NotificationList/" + Session["UserId"].ToString(), "Notification", null, notificationAjaxOptions, new { @id = "notificationAjax", @method = "GET" }))
+                        {
+                           
+                        }
+                         @Html.Hidden("sessionid", Session["UserId"], new { @id = "sessionid" })
+                        <div class="nav-item dropdown mx-4" id="updatediv">
+                            
+                                @Html.Partial("_NotificationList", DataLibrary.BusinessLogic.NotificationProcessor.GetUnreadNotifications(Int32.Parse(Session["UserId"].ToString())))
+                            
                         </div>
                         <div class="nav-item dropdown">
                             @*<div class="ml-3 btn-group">*@
@@ -139,9 +150,11 @@
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
         @*@Scripts.Render("~/bundles/bootstrap")*@
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/notification.js"></script>
+        <script src="~/Scripts/auctionUpdate.js"></script>
         @RenderSection("scripts", required: false)
         
         

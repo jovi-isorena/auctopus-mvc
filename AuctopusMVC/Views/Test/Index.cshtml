@@ -3,16 +3,16 @@
 }
 
 <h2>Test</h2>
-<input type="text" name="name" id="txt" />
-<button id="btntest">GET</button>
+<button id="btntest">Update auction</button>
 
 
+@section scripts
+{
 <script>
     $(document).ready(function () {
         $('#btntest').on('click', function () {
-            var id = $('#txt').val();
-            var dataurl = "/Bid/HighestBid/" + id + "";
-            console.log(id);
+            var dataurl = "/AuctionedItem/CloseAllEndedAuction";
+            
             $.ajax({
                 url: dataurl,
                 method: "GET",
@@ -24,5 +24,27 @@
                 }
             });
         });
+        var isAdmin = $('#isAdmin').length
+        if (isAdmin > 0)
+        {
+            setInterval(updateAuction, 5000);
+        }
     });
+
+    function updateAuction()
+    {
+        var dataurl = "/AuctionedItem/CloseAllEndedAuction";
+
+        $.ajax({
+            url: dataurl,
+            method: "GET",
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
 </script>
+    }

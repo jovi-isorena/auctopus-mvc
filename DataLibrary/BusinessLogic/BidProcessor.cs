@@ -36,5 +36,13 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select top 1 * from [dbo].[Bid] where [Id] = @Id;";
             return SqlDataAccess.LoadData<BidModel>(sql, data);
         }
+
+        public static List<int> GetBidders(int itemid)
+        {
+            BidModel data = new BidModel{ItemId = itemid};
+            string sql = @"select distinct([UserId]) from dbo.[Bid] where [ItemId] = " + itemid + ";";
+
+            return SqlDataAccess.LoadData<int>(sql);
+        }
     }
 }

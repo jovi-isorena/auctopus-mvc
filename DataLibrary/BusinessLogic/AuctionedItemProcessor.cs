@@ -53,6 +53,12 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.LoadData<AuctionedItemModel>(sql);
         }
 
+        public static List<AuctionedItemModel> LoadEndedAuctions()
+        {
+            string sql = "select * from dbo.AuctionedItem where [AuctionEndDateTime] < CURRENT_TIMESTAMP and [Status] = 'Active';";
+            return SqlDataAccess.LoadData<AuctionedItemModel>(sql);
+        }
+
         public static AuctionedItemModel GetAuctionedItem(int id) 
         {
             AuctionedItemModel item = new AuctionedItemModel { AuctionedItemId = id };
@@ -71,6 +77,12 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+        public static int CloseAuction(int id)
+        {
+            AuctionedItemModel data = new AuctionedItemModel { AuctionedItemId = id };
+            string sql = @"update [dbo].[AuctionedItem] set [Status] = 'Closed' where [AuctionedItemId] = @AuctionedItemId";
+            return SqlDataAccess.SaveData(sql, data);
+        }
         public static int Archive(int id)
         {
             AuctionedItemModel data = new AuctionedItemModel

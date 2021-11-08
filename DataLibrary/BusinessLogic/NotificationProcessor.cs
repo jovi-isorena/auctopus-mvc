@@ -18,6 +18,13 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+        public static NotificationModel GetNotification(int id)
+        {
+            NotificationModel data = new NotificationModel{Id = id};
+            string sql = @"select * from [dbo].[Notification] where [Id] = @Id";
+            return SqlDataAccess.LoadData<NotificationModel>(sql,data);
+        }
+
         public static List<NotificationModel> LoadNotifications(int userid)
         {
             NotificationModel data = new NotificationModel { UserId = userid };
@@ -25,5 +32,25 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.LoadDataWhere<NotificationModel>(sql, data);
         }
 
+        public static List<NotificationModel> GetUnreadNotifications(int userid)
+        {
+            NotificationModel data = new NotificationModel { UserId = userid };
+            string sql = "select * from dbo.[Notification] where [UserId] = @UserId AND [Read] = 0 ORDER BY [CreatedOn] DESC;";
+            return SqlDataAccess.LoadDataWhere<NotificationModel>(sql, data);
+        }
+
+        public static int GetUnreadNotificationsCount(int userid)
+        {
+            NotificationModel data = new NotificationModel { UserId = userid };
+            string sql = "select * from dbo.[Notification] where [UserId] = @UserId AND [Read] = 0;";
+            return SqlDataAccess.LoadDataWhere<NotificationModel>(sql, data).Capacity;
+        }
+
+        public static void ReadNotification(int id)
+        {
+            NotificationModel data = new NotificationModel { Id = id };
+            string sql = "update dbo.[Notification] set [Read] = 1 where [Id] = @Id;";
+            SqlDataAccess.SaveData(sql, data);
+        }
     }
 }

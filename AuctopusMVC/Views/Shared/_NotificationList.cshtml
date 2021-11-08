@@ -1,9 +1,31 @@
-﻿<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationIcon" id="notificationList">
+﻿@model List<DataLibrary.Models.NotificationModel>
+
+<button type="button" class=" border border-dark rounded-circle d-inline position-relative" id="notificationIcon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="far fa-bell"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger @(Model.Capacity > 0? "": "d-none")" id="notifCountPill">
+        @Model.Capacity
+    </span>
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationIcon" id="notificationList">
                                 
     @*<li><a class="dropdown-item" href="#">Notification 1</a></li>
     <li><a class="dropdown-item" href="#">Notification 2</a></li>
     <li><a class="dropdown-item" href="#">Notification 3</a></li>
     <li><a class="dropdown-item" href="#">Notification 4</a></li>*@
+    @if (Model.Capacity <= 0)
+    { 
+        <li class="text-center fst-italic">No new notification</li>
+    }
+    else
+    {
+        foreach (var notif in Model)
+        {
+            @*<a class="dropdown-item" href="~/@notif.Link">@notif.Message</a> *@
+            <li>@Html.ActionLink(notif.Message, "RedirectNotification/" + notif.Id, "Notification",null, new {@class = "dropdown-item"}) </li>
+        
+        }
+    }
+    
     <li><hr class="dropdown-divider"></li>
     <li>
         <a class="dropdown-item" href="~/Notification">See All Notifications</a>
