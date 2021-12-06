@@ -3,9 +3,35 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="my-5">
+    <span class="header-block"><i class="bi bi-triangle"></i> Auction List</span>
+</div>
 
-<h2 class="mt-5">Auction List</h2>
-
+<div id="filter" >
+    <form method="get" action="/Auction" class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+                <span class="mr-2" style="margin-right: 10px;">Category</span>
+                <select class="auc-select ml-2" name="category" id="select-category">
+                    <option value="" @(Request.QueryString.Get("category") == "" ? "selected" : "")>All</option>
+                    <option value="Antique" @(Request.QueryString.Get("category") == "Antique" ? "selected" : "")>Antique</option>
+                    <option value="Art" @(Request.QueryString.Get("category") == "Art" ? "selected" : "")>Art</option>
+                    <option value="Clothing" @(Request.QueryString.Get("category") == "Clothing" ? "selected" : "")>Clothing</option>
+                    <option value="Collectible" @(Request.QueryString.Get("category") == "Collectible" ? "selected" : "")>Collectible</option>
+                    <option value="Electrical Device" @(Request.QueryString.Get("category") == "Electrical Device" ? "selected" : "")>Electrical Device</option>
+                    <option value="Furniture" @(Request.QueryString.Get("category") == "Furniture" ? "selected" : "")>Furniture</option>
+                    <option value="Novelty Items" @(Request.QueryString.Get("category") == "Novelty Items" ? "selected" : "")>Novelty Items</option>
+                 
+                </select>
+            
+        </div>
+        <div>
+            <div class="d-flex custom-pill">
+                <input type="text" placeholder="Search here..." aria-label="search item" aria-describedby="search-btn" name="query" value="@Request.QueryString.Get("query")">
+                <button class="btn btn-custom-black rounded-circle custom-search-btn" type="submit" id="search-btn"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
 @*<table>
     <tr>
         <th>
@@ -18,21 +44,46 @@
             @Html.DisplayNameFor(model => model.HighestBid)
         </th>
     </tr>*@
-<div class="row">
+<div class="row justify-content-evenly">
     @foreach (var item in Model) {
-        <div class="card col-3 m-3 p-0" style="width: 18rem;">
-          <img src="@item.Item.ImageURL" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">#@item.Item.AuctionedItemId <br />@item.Item.Name</h5>
-            <p class="card-text">@item.Item.Description</p>
-          
-          </div>
-            <div class="card-footer p-0">
-                @Html.ActionLink("Go to Room", "Room", new { id = item.Item.AuctionedItemId }, new { @class="btn btn-custom-pink w-100"})
+        <div class="card col-3 m-3 flip p-0 border-black shadow" style="width: 18rem; height: 350px; z-index: 100; cursor:pointer; overflow:hidden">
+            <div class="card-header bg-black text-white">
+                <h5 class="card-title">#@item.Item.AuctionedItemId @item.Item.Name</h5>
+                <p style="font-size: 12px;">Auction close at: <br /> @item.Item.AuctionEndDate.ToString("MMM dd yyyy") @item.Item.AuctionEndTime.ToString("h:mm tt")</p>
             </div>
+            <div class="card-body p-0" style="height: 300px; max-height:300px; width: auto">
+                
+                <div class="front" style="overflow:hidden">
+                        <img src="@item.Item.ImageURL" class="" alt="..." style="position:absolute; left: 50%; height:200px; transform:translateX(-50%)">
+                       
+                    
+                </div>
+                <div class="back">
+                    <p class="card-text">@item.Item.Description</p>
+                </div>    
+                        
+            </div>
+                       <div class="card-footer p-0 border-0" style="z-index: 100;">
+                            @Html.ActionLink("Go to Room", "Room", new { id = item.Item.AuctionedItemId }, new { @class="btn btn-custom-pink w-100"})
+                        </div>
+            
+             
+          
+            
         </div>
     }
 </div>
+@section scripts{
+    <script src="~/Scripts/select-category.js"></script>
+    <script>
+        $(function(){
+            $(".flip").flip({
+                trigger: 'click'
+            });
+            $(".flip".flip("front"));
+        });
+    </script>    
+}
     @*<tr>
         <td>
             <strong>#@Html.DisplayFor(modelItem => item.Item.AuctionedItemId)</strong>

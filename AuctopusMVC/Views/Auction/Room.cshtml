@@ -11,8 +11,9 @@
     };
 }
 <div class=" mt-5 mb-3">
-        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-secondary"})
-    </div>
+        @*@Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-secondary"})*@
+    <a href="#" onclick="history.go(-1);" class="btn btn-secondary"><i class="bi bi-caret-left"></i> Back</a>
+</div>
 <div class="row" >
     
     <div class="col-md-6 border border-dark border-3 border-radius-15">
@@ -34,11 +35,11 @@
             </div>
             <div class="text-center mb-3">
                 <h3>@Html.DisplayNameFor(model => model.Item.AuctionStartDate)</h3>
-                <p>@Html.DisplayFor(model => model.Item.AuctionStartDate)  @Html.DisplayFor(model => model.Item.AuctionStartTime)</p>
+                <p>@Model.Item.AuctionStartDate.ToString("MMM dd yyyy")  @Model.Item.AuctionStartTime.ToString("h:mm tt")</p>
             </div>
             <div class="text-center mb-3">
                 <h3>@Html.DisplayNameFor(model => model.Item.AuctionEndDate)</h3>
-                <p>@Html.DisplayFor(model => model.Item.AuctionEndDate)  @Html.DisplayFor(model => model.Item.AuctionEndTime)</p>
+                <p>@Model.Item.AuctionEndDate.ToString("MMM dd yyyy")  @Model.Item.AuctionEndTime.ToString("h:mm tt")</p>
             </div>
             <div class="text-center mb-3">
                 <h3>@Html.DisplayNameFor(model => model.Item.InitialBid)</h3>

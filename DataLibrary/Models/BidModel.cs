@@ -15,4 +15,12 @@ namespace DataLibrary.Models
         public double Amount { get; set; }
         public string Status { get; set; }
     }
+    public class HotItemModel
+    {
+        public int ItemId { get; set; }
+        public int UserCount { get; set; }
+        public int BidCount { get; set; }
+        public double HighestBid { get; set; }
+        
+    }
 }

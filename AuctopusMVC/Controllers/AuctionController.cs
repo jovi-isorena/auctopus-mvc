@@ -15,9 +15,10 @@ namespace AuctopusMVC.Controllers
         //
         // GET: /Auction/
 
-        public ActionResult Index()
+        public ActionResult Index(string category, string query)
         {
-            List<AuctionModel> dbList = AuctionProcessor.LoadAuctions();
+
+            List<AuctionModel> dbList = AuctionProcessor.LoadAuctions(category, query);
             List<Auction> auctions = new List<Auction>();
             foreach (AuctionModel item in dbList)
             {
@@ -26,6 +27,7 @@ namespace AuctopusMVC.Controllers
             return View(auctions);
         }
 
+        
         //
         // GET: /bid/Details/5
 
@@ -38,8 +40,10 @@ namespace AuctopusMVC.Controllers
             Auction auc = new Auction();
             auc.Item = new AuctionedItem(AuctionedItemProcessor.GetAuctionedItem(id));
             var highest = BidProcessor.GetHighestBid(id);
-            if(highest != null)
+            if (highest != null)
                 auc.HighestBid = new Bid(highest);
+            else
+                auc.HighestBid = new Bid();
             auc.NewBid = new Bid { 
                 ItemId = id,
                 UserId = Convert.ToInt32(Session["UserId"])
@@ -60,14 +64,23 @@ namespace AuctopusMVC.Controllers
             if (form["NewBid.Amount"] != null)
             {
                 // TODO: Add insert logic here
-                if (newbid > highest.Amount && userid != highest.UserId)
+                try
                 {
-                    int record = BidProcessor.Create(Convert.ToInt32(form["Item.AuctionedItemId"]),userid, newbid);
-                    NotificationProcessor.Create(NotificationType.OutBid,highest.UserId, highest.ItemId);
+                    if (newbid > highest.Amount && userid != highest.UserId)
+                    {
+                        int record = BidProcessor.Create(Convert.ToInt32(form["Item.AuctionedItemId"]), userid, newbid);
+                        NotificationProcessor.Create(NotificationType.OutBid, highest.UserId, highest.ItemId);
+                    }
+                    else
+                    {
+                        //error message here, new bid is lower
+                    }
                 }
-                else { 
-                    //error message here, new bid is lower
+                catch (NullReferenceException) 
+                {
+                    int record = BidProcessor.Create(Convert.ToInt32(form["Item.AuctionedItemId"]), userid, newbid);
                 }
+                
                 
 
             }

@@ -1,5 +1,6 @@
 ﻿using AuctopusMVC.Models;
 using DataLibrary.BusinessLogic;
+using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,31 @@ namespace AuctopusMVC.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string category, string query)
         {
-            return View();
+            List<HotItemModel> hotItemsFromDb = BidProcessor.GetHotiItems();
+            List<HotItem> hotItems = new List<HotItem>();
+            foreach (var hotItem in hotItemsFromDb)
+            {
+                hotItems.Add(new HotItem(hotItem.BidCount, hotItem.UserCount, hotItem.HighestBid, hotItem.ItemId));
+            }
+
+            List<AuctionModel> dbList = AuctionProcessor.LoadAuctions(category, query);
+            List<Auction> auctions = new List<Auction>();
+            foreach (AuctionModel item in dbList)
+            {
+                auctions.Add(new Auction(item));
+            }
+            Homepage homeModel = new Homepage();
+            homeModel.HotItems = hotItems;
+            homeModel.Auctions = auctions;
+            return View(homeModel);
         }
 
         public ActionResult Login()
         {
             return View();
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

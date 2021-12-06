@@ -44,5 +44,17 @@ namespace DataLibrary.BusinessLogic
 
             return SqlDataAccess.LoadData<int>(sql);
         }
+
+        public static List<HotItemModel> GetHotiItems() 
+        {
+            string sql = @"select top 10 b.[ItemId], 
+	            count(distinct UserId) as 'UserCount', 
+	            count([Id]) as 'BidCount', 
+	            max([Amount]) as 'HighestBid'
+                from dbo.[Bid] b
+                group by b.[ItemId]
+                order by [BidCount] desc;";
+            return SqlDataAccess.LoadData<HotItemModel>(sql);
+        }
     }
 }

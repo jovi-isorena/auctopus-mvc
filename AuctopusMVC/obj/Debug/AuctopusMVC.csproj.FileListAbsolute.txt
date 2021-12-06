@@ -1,6 +1,8 @@
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\obj\Debug\AuctopusMVC.csprojResolveAssemblyReference.cache
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\AuctopusMVC.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\AuctopusMVC.pdb
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Antlr3.Runtime.dll
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\DataLibrary.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\EntityFramework.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
@@ -16,6 +18,8 @@ C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\S
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Web.WebPages.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Web.WebPages.Razor.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\WebGrease.dll
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Dapper.dll
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\DataLibrary.pdb
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\EntityFramework.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Newtonsoft.Json.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Net.Http.Formatting.xml
@@ -26,10 +30,6 @@ C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\S
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Web.WebPages.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Web.WebPages.Deployment.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\System.Web.WebPages.Razor.xml
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\obj\Debug\AuctopusMVC.csprojResolveAssemblyReference.cache
+C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Dapper.xml
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\obj\Debug\AuctopusMVC.dll
 C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\obj\Debug\AuctopusMVC.pdb
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\DataLibrary.dll
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Dapper.dll
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\DataLibrary.pdb
-C:\Users\QCU\Documents\Visual Studio 2012\Projects\AuctopusMVC\AuctopusMVC\bin\Dapper.xml

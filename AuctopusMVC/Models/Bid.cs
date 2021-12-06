@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLibrary.BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +9,13 @@ namespace AuctopusMVC.Models
 {
     public class Bid
     {
-        public Bid() { }
+        public Bid() {
+            Id = 0;
+            ItemId = 0;
+            UserId = 0;
+            Amount = 0;
+            Status = String.Empty;
+        }
         public Bid(DataLibrary.Models.BidModel b) {
             Id = b.Id;
             ItemId = b.ItemId;
@@ -25,6 +32,22 @@ namespace AuctopusMVC.Models
         public double Amount { get; set; } 
         public string Status { get; set; }
 
-		
+
+    }
+    public class HotItem
+    {
+        public HotItem() { }
+        public HotItem(int bidCount, int userCount, double highestBid, int item) 
+        {
+            BidCount = bidCount;
+            UserCount = userCount;
+            HighestBid = highestBid;
+            Item = new AuctionedItem(AuctionedItemProcessor.GetAuctionedItem(item));
+        }
+
+        public int BidCount { get; set; }
+        public int UserCount { get; set; }
+        public double HighestBid { get; set; }
+        public AuctionedItem Item {get; set;}
     }
 }

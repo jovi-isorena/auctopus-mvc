@@ -17,14 +17,14 @@
             <div class="mb-3 ">
                 @Html.LabelFor(model => model.Email, new { @class = "form-label"})
                 <br />
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control w-50 m-auto"})
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control w-50 m-auto text-center"})
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger"})
             
             </div>
             <div class="mb-3">
                 @Html.LabelFor(model => model.Password, new { @class = "form-label"})
                 <br />
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control w-50 m-auto"})
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control w-50 m-auto text-center"})
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
             
             </div>

@@ -1,4 +1,4 @@
-
+/*primary: #c42cc4*/
 
 body {
 	
@@ -51,6 +51,12 @@ body {
     background-color: transparent;
     color: #c42cc4!important; 
     border: 1px #c42cc4 solid;
+    
+}
+
+.btn-custom-black {
+    background-color: black;
+    color: white;
     
 }
 
@@ -130,4 +136,134 @@ body {
     font-size: 3rem;
     font-weight: 700;
   
+}
+
+ /* =====================home================*/
+.item-thumbnail {
+    width: 200px;
+    height: 250px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    background-color: white;
+    margin: 1rem 1rem;
+    overflow: hidden;
+    justify-content: center;
+
+}
+.item-thumbnail-header {
+    text-align: center;
+}
+
+.item-thumbnail-link {
+    text-decoration: none;
+    color: black;
+}
+
+.item-thumbnail:hover {
+    transform: translateY(-10px);
+    transition: all ease 100ms;
+    box-shadow: 0px 5px 5px rgba(40,40,40, .7);
+}
+.item-thumbnail img {
+    /*width: 100%;*/
+    height: 100px;
+    margin: auto;
+    display: block;
+
+}
+
+.item-thumbnail a {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    text-decoration: none;
+    text-align:center;
+    padding: 4px 0;
+}
+
+.item-thumbnail p {
+    font-size: .7rem;
+}
+
+.hot-icon {
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*background: rgb(255,252,0);*/
+    background: radial-gradient(circle, rgba(255,252,0,1) 0%, rgba(255,107,8,1) 32%, rgba(255,0,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-block {
+    background-color: black;
+    color: white;
+    box-shadow: 10px 10px 0px 0px #c42cc4;
+    font-size: 2rem;
+    padding: .7rem;
+    font-weight: bold;
+}
+
+.auc-select {
+    border: 1px black solid;
+    padding: 5px;
+    text-align: center;
+
+    border-radius: 20px;
+}
+    
+
+.auc-select>option {
+    margin: 15px;
+
+}
+.auc-select>option:checked {
+    background-color: #c42cc4;
+    color: white;
+}
+
+.auc-select>option:hover {
+    background-color: #c42cc4;
+    color: white;
+}
+
+.custom-pill {
+    
+    border: 1px black solid;
+    border-radius: 20px;
+    
+}
+.custom-pill > input[type='text'] {
+    border: none;
+    border-radius: 20px;
+    padding-left: 15px;
+    position:relative;
+    
+}
+.custom-search-btn {
+    height: 100%;
+    
+}
+/*============ flip ================*/
+.flip {
+    /*height: auto;
+    width: auto;*/
+}
+.flip img {
+    /*width: 300px;*/
+    height: auto;
+}
+.flip .back {
+    background: black;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+.flip .front {
+    
 }

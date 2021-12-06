@@ -10,10 +10,10 @@ namespace DataLibrary.BusinessLogic
 {
     public class AuctionProcessor
     {
-        public static List<AuctionModel> LoadAuctions() 
+        public static List<AuctionModel> LoadAuctions(string category, string query) 
         {
             List<AuctionModel> auctions = new List<AuctionModel> { };
-            string sql = "select * from dbo.[AuctionedItem] where [Status] = 'active';";
+            string sql = "select * from dbo.[AuctionedItem] where [Status] = 'active' and [Category] LIKE '%" + category + "%' and ([Name] LIKE '%" + query + "%' OR [Description] LIKE '%" + query + "%');";
             List<AuctionedItemModel> items =  SqlDataAccess.LoadData<AuctionedItemModel>(sql);
             
             foreach (AuctionedItemModel item in items)
